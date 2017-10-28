@@ -1,3 +1,5 @@
+import numpy
+import math
 
 #Funkcija, ki izračuna dolžine med točkami
 
