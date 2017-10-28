@@ -5,7 +5,8 @@ import math
 
 def dolzina_med_tockami(seznam_slovarjev):
 
-"Funkcija sprejme seznam slovarjev iz katerega generira seznam seznamov. Vsak podseznam predstavlja razdalje od določene točke do vseh ostalih točk.
+#Funkcija sprejme seznam slovarjev iz katerega generira seznam seznamov. Vsak podseznam predstavlja razdalje od določene točke do vseh ostalih točk.
+
     seznam = []                                                                    #seznam, kamor bomo shranili podsezname
     for i in seznam_slovarjev:                                                     #za vsako tocko bomo izracunali razdalje do njenih sosed
         podseznam = []                                                             #podseznam, kjer bomo shranili razdalje za neko tocko
