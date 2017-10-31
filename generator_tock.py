@@ -1,12 +1,8 @@
 # An Optimal Bound for the MST Algorithm to Compute Energy Efficient Broadcat Strees in Wireless Networks
 
-# Izrek: Vsota kvadratov dolzin povezav v minimalnem vpetem drevesu s poljubnimi tockami v enotskem disku, kjer
-# je sredisce tocka v setu poljubnih tock, je skoraj 6.
-
-
 # uvoz knjiznic
 import numpy
-import math
+
 
 
 
@@ -19,7 +15,7 @@ import math
 def krog(polmer, st_tock):
     '''Funkcija sprejme polmer in stevilo tock, ki jih nakljucno izbere znotraj kroga s srediscem v (0,0).
     Fukcija vrne tocke v seznamu slovarjev oblike {'x' : x, 'y' : y}.'''
-    seznam_tock = []                                          # seznam, v katerega shranjujemo slovarje nakljucnih tock
+    seznam_tock = [{'x' : 0, 'y' : 0}]                        # seznam, v katerega shranjujemo slovarje nakljucnih tock
     while len(seznam_tock) < st_tock:                         # iscemo nakljucne tocke, dokler v seznamu ni dovolj tock
         x = numpy.random.uniform(-polmer, polmer)             # x in y koordinato izberemo nakljucno, enakomerno porazdeljeno na intervalu polmera
         y = numpy.random.uniform(-polmer, polmer)             # s tem dobimo tocke znotraj kvadrata s stranico iste dolzine kot premer kroga
@@ -31,8 +27,8 @@ def krog(polmer, st_tock):
 def kvadrat(dolzina_stranice, st_tock):
     '''Funkcija sprejme dolzino stranice kvadrata in st. tock, ki jih nakljucno izbere znotraj kvadrata s srediscem v (0,0).
     Funkcija vrne tocke v seznamu slovarjev.'''
-    seznam_tock = []
-    for tocka in range(st_tock):                              # iscemo nakljucne tocke v kvadratu, centriranega v koordinatnem izhodiscu,
+    seznam_tock = [{'x' : 0, 'y' : 0}]
+    for tocka in range(st_tock):                                                # iscemo nakljucne tocke v kvadratu, centriranega v koordinatnem izhodiscu,
         x = numpy.random.uniform(-dolzina_stranice/2, dolzina_stranice/2)       # zato gledamo interval od polovice dolzine stranic v negatino in pozitivno
         y = numpy.random.uniform(-dolzina_stranice/2, dolzina_stranice/2)
         seznam_tock.append({'x' : x, 'y' : y})
@@ -43,7 +39,7 @@ def pravokotnik(dolzina_stranice_a, dolzina_stranice_b, st_tock):
     '''Funkcija sprejme dolzini stranic in st. tock, ki jih nakljucno izbere znotraj pravokotnika, ki ga centriramo v
     koordinatni sistem.
     Funkcija vrne tocke v seznamu slovarjev.'''
-    seznam_tock = []
+    seznam_tock = [{'x' : 0, 'y' : 0}]
     for tocka in range(st_tock):                                                # iskanje tock v pravokotniku je zelo slicno iskanju znotraj kvadrata
         x = numpy.random.uniform(-dolzina_stranice_a/2, dolzina_stranice_a/2)
         y = numpy.random.uniform(-dolzina_stranice_b/2, dolzina_stranice_b/2)
@@ -55,7 +51,7 @@ def elipsa(dolzina_ax, dolzina_by, st_tock):
     '''Funkcija sprejme dolzini velike in male polosi elipse, ki predstavljata standardni "a" in "b" vrednosti.
     Elipsa je postavljena v srediscno lego.
     Funkcija vrne nakljucno zgenerirane tocke v seznamu slovarjev.'''
-    seznam_tock = []
+    seznam_tock = [{'x' : 0, 'y' : 0}]
     while len(seznam_tock) < st_tock:                               # Tocke iscemo najprej znotraj pravokotnika s stranicama dolzina_ax in dolzina_by
         x = numpy.random.uniform(-dolzina_ax/2, dolzina_ax/2)
         y = numpy.random.uniform(-dolzina_by/2, dolzina_by/2)
@@ -83,4 +79,4 @@ def trikotnik(dolzina_stranice, st_tock):
         D = 1/2 * (abs(a1[0] * a2[1] + a2[0] * y + x * a1[1] - a2[0] * a1[1] + x * a2[1] - a1[0] * y))
         if A == (B + C + D):                                # Ce tocka je znotraj trikotnika, jo damo v seznam tock.
             seznam_tock.append({'x': x, 'y': y})
-        return seznam_tock
+    return seznam_tock
