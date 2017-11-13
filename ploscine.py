@@ -14,13 +14,13 @@ def ploscina( polmer, lik ):
     elif lik == "pravokotnik":
         a=math.pi*polmer
         b=polmer
-        return a,b
+        return [a,b]
 #Pri elipsi je podoben problem s stranicami kot pri pravokotniku, zato lahko spet izberemo dve stranici, da bo ploscina ista.
 #S=math.pi*a*b
     elif lik == "elipsa":
         a=2*polmer
         b=polmer/2
-        return a,b
+        return [a,b]
 #ce je nas lik enakostranicen trikotnik, potem obstaja samo ena moznost. Stranico izracunamo iz formule S = (math.sqrt(3) * a**2)/4
     elif lik == "trikotnik":
         a = math.sqrt((4*math.pi*(polmer)**2)/math.sqrt(3))
