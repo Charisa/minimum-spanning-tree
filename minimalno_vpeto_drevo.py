@@ -1,7 +1,7 @@
 # An Optimal Bound for the MST Algorithm to Compute Energy Efficient Broadcat Strees in Wireless Networks
 
 # uvoz knjiznic
-import numpy as np
+import numpy
 import math
 
 
@@ -40,7 +40,7 @@ def prim(seznam_tock, matrika_dolzin):
             F.append(E[vozlisce])
         # Zanka gre cez vsako vozlisce i, za katero velja, da med i in vozlisce obstaja povezava
         for cena_povezave in matrika_dolzin[vozlisce]:
-            i = np.where(matrika_dolzin[vozlisce] == cena_povezave)[0][0]
+            i = numpy.where(matrika_dolzin[vozlisce] == cena_povezave)[0][0]
             # Ce je vozlisce i v Q in je cena povezave med i in vozlisce manjsa od C[i],
             # potem C[i] nastavimo na zdajsnjo ceno povezave in v E[i] shranimo vozlisce, tako da kaze na
             # povezavo med i in vozlisce
@@ -51,4 +51,4 @@ def prim(seznam_tock, matrika_dolzin):
     # Vzamemo povezave od vkljucno drugega vozlisca
     F = F[1:]
     vsota = sum([(matrika_dolzin[F[2*i]][F[2*i+1]])**2 for i in range(st_vozlisc -1) ])
-    return (vsota)
+    return [F, vsota]
