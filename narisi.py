@@ -12,6 +12,7 @@ def narisi_krog(polmer, seznam_tock, drevo, risi):
     plt.xlim([-dolzina_stranice/2 - 2, dolzina_stranice/2 + 2])
     plt.ylim([-dolzina_stranice/2 - 2, dolzina_stranice/2 + 2])
     #plt.axis([-dolzina_stranice - 4, dolzina_stranice + 4, - dolzina_stranice - 4, dolzina_stranice + 4])
+    plt.axis([-polmer, polmer, - polmer, polmer])
     circle = plt.Circle((0,0), dolzina_stranice/2)
     plt.gcf().gca().add_artist(circle)
     if risi == "drevo":
