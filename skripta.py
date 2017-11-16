@@ -5,11 +5,13 @@ import ploscine
 
 
 ponovitve = 1000
-st_tock = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 100]
+st_tock = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
 
 # KROG
 
-polmeri = [1, 1.5, 2, 10]
+
+polmeri = [1, 1.5, 2, 5, 10]
 sez_krog = []
 
 for polmer in polmeri:
