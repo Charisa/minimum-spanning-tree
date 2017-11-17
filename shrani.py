@@ -15,6 +15,6 @@ def shrani(mapa, ime_datoteke, seznam):
     pot = os.path.join(mapa, ime_datoteke)
 #shranimo nas text v datoteko pod kodni nabor utf-8
 #oznaka 'w' pomeni, da bomo pisali v datoteko
-    with open(pot, 'w', encoding = 'utf-8') as datoteka:
-        datoteka.write(text)
+    with open(pot, 'a', encoding = 'utf-8') as datoteka:
+        datoteka.write(text + "\n")
     return None
