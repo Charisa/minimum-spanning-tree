@@ -32,8 +32,16 @@ def prim(seznam_tock, matrika_dolzin):
     while len(Q):
         # Najdemo "vozlisce", ki je v Q in ima najcenejso povezavo do "vozlisce"
         vozlisce = C.index(min([C[i] for i in Q]))
-        # Odstranimo vozlisce iz mnozice neuporabljenih vozlisc
-        Q.remove(vozlisce)
+        # Odstranimo vozlisce iz mnozice neuporabljenih vozlisc (pazimo na morebitne ponovitve razdalj
+        # ki so sicer pri nakljucni izbiri zelo malo verjetne)
+        if vozlisce in Q:
+            Q.remove(vozlisce)
+        else:
+            vsi_indeksi = [i for i, x in enumerate(C) if x == vozlisce]
+            for indeks in vsi_indeksi:
+                if indeks in Q:
+                    Q.remove(indeks)
+                    break
         # Dodamo vozlisce v F
         F.append(vozlisce)
         # Ce E[vozlisce] nima vrednosti -1 ("flag value), dodamo E[vozlisce] v F
