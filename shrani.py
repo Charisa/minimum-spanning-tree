@@ -11,10 +11,9 @@ def shrani(mapa, ime_datoteke, seznam):
 
 #pogledamo, ce mapa ze obstaja, drugace pa naredimo novo
     os.makedirs(mapa, exist_ok=True)
-#shranimo pot po kateri lahko najdemo naso apo na racunalniku
+#shranimo pot po kateri lahko najdemo naso mapo na racunalniku
     pot = os.path.join(mapa, ime_datoteke)
 #shranimo nas text v datoteko pod kodni nabor utf-8
-#oznaka 'w' pomeni, da bomo pisali v datoteko
     with open(pot, 'a', encoding = 'utf-8') as datoteka:
         datoteka.write(text + "\n")
     return None
