@@ -6,7 +6,7 @@ require(ggplot2)
 tocke <- read.table("rezultati_tocke.txt")
 tocke <- as.data.frame(t(tocke))
 colnames(tocke) <- c("krog", "kvadrat", "pravokotnik", "elipsa", "trikotnik")
-tocke["st_tock"] <- c(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+tocke["st_tock"] <- c(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 50)
 #graf
 plot.new()
 ggplot(data=tocke) + geom_point(data=tocke, aes(x=tocke$st_tock, y=tocke$krog), colour="darkorchid")+
