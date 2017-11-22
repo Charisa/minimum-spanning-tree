@@ -13,7 +13,8 @@ import math
 def prim(seznam_tock, matrika_dolzin):
     '''Funkcija sprejme seznam slovarjev tock (return funkcij generatorjev tock) in matriko dolzin med
         temi tockami (return funkcije dolzina).
-        Funkcija najde minimalno vpeto drevo. Izracunamo se vsoto cen minimalnega vpetega drevesa.'''
+        Funkcija najde minimalno vpeto drevo. Izracunamo se vsoto cen minimalnega vpetega drevesa,
+        ki pa ni del Primovega algoritma'''
     st_vozlisc = len(seznam_tock)
     # Na zacetku pripravimo mnozico vozlisc, ki jih bomo za lepsi pregled oznacili z indeksi (0, 1, 2, ...)
     # Q bo vseboval vsa vozlisca, ki jih se nismo uporabili v seznamu F
