@@ -2,117 +2,145 @@ import generator_tock
 import dolzina
 import minimalno_vpeto_drevo
 import ploscine
+import shrani
 
 
-ponovitve = 1000
+mapa = "rezultati"
+polmeri = [1, 1.5, 2, 5, 10]
 st_tock = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-
+ponovitve = 1000
 
 # KROG
 
+ime_datoteke_krog = "rezultati_krog.txt"
 
-polmeri = [1, 1.5, 2, 5, 10]
-sez_krog = []
+def shrani_krog(mapa, ime_datoteke, polmeri, st_tock, ponovitve):
+    '''Funkcija zgenerira tocke, izracuna dolzine med njimi in minimalno vpeto drevo in vsoto kvadratov, in to ponavlja
+    ter shrani rezultate v datoteko.'''
+    sez_krog = []
+    for polmer in polmeri:
+        podseznam = []
+        for tocke in st_tock:
+            maksimum = 0
+            for i in range(ponovitve):
+                a = generator_tock.krog(polmer, tocke)
+                b = dolzina.dolzina_med_tockami(a)
+                c = minimalno_vpeto_drevo.prim(a, b)[1]
+                if maksimum < c:
+                    maksimum = c
+            podseznam.append(maksimum)
+        sez_krog.append(podseznam)
 
-for polmer in polmeri:
-    podseznam = []
-    for tocke in st_tock:
-        maksimum = 0
-        for i in range(ponovitve):
-            a = generator_tock.krog(polmer, tocke)
-            b = dolzina.dolzina_med_tockami(a)
-            c = minimalno_vpeto_drevo.prim(a, b)[1]
-            if maksimum > c:
-                pass
-            else:
-                maksimum = c
-        podseznam.append(maksimum)
-    sez_krog.append(podseznam)
-print()
+    shrani.shrani(mapa, ime_datoteke, sez_krog)
+    return
 
 
 
 # KVADRAT
 
-stranice = [ploscine.ploscina(k, "kvadrat") for k in polmeri]
-sez_kvadrat  =[]
+ime_datoteke_kvadrat = "rezultati_kvadrat.txt"
 
-for stranica in stranice:
-    podseznam = []
-    for tocke in st_tock:
-        maksimum = 0
-        for i in range(ponovitve):
-            a = generator_tock.kvadrat(stranica, tocke)
-            b = dolzina.dolzina_med_tockami(a)
-            c = minimalno_vpeto_drevo.prim(a, b)[1]
-            if maksimum > c:
-                pass
-            else:
-                maksimum = c
-        podseznam.append(maksimum)
-    sez_kvadrat.append(podseznam)
-print(sez_kvadrat)
+def shrani_kvadrat(mapa, ime_datoteke, polmeri, st_tock, ponovitve):
+    '''Funkcija zgenerira tocke v kvadratu, izracuna dolzine, najde minimalno drevo in vsoto. Poskus ponovi, kolikor
+    dano, rezultate pa spravi v datoteko.'''
+    stranice = [ploscine.ploscina(k, "kvadrat") for k in polmeri]
+    sez_kvadrat  =[]
+    for stranica in stranice:
+        podseznam = []
+        for tocke in st_tock:
+            maksimum = 0
+            for i in range(ponovitve):
+                a = generator_tock.kvadrat(stranica, tocke)
+                b = dolzina.dolzina_med_tockami(a)
+                c = minimalno_vpeto_drevo.prim(a, b)[1]
+                if maksimum > c:
+                    pass
+                else:
+                    maksimum = c
+            podseznam.append(maksimum)
+        sez_kvadrat.append(podseznam)
+    return
 
 
 # PRAVOKOTNIK
 
-stranici = ploscine.ploscina(1, "pravokotnik")
-sez_pravokotnik = []
+ime_datoteke_pravokotnik = "rezultati_pravokotnik.txt"
 
-for tocke in st_tock:
-    maksimum = 0
-    for i in range(ponovitve):
-        a = generator_tock.pravokotnik(stranici[0], stranici[1], tocke)
-        b = dolzina.dolzina_med_tockami(a)
-        c = minimalno_vpeto_drevo.prim(a, b)[1]
-        if maksimum > c:
-            pass
-        else:
-            maksimum = c
-    sez_pravokotnik.append(maksimum)
-print(sez_pravokotnik)
+def shrani_pravokotnik(mapa, ime_datoteke, st_tock, ponovitve):
+    '''Funkcija zgenerira tocke v pravokotniku, izracuna dolzine, najde minimalno drevo in vsoto. Poskus ponovi, kolikor
+        dano, rezultate pa spravi v datoteko.'''
+    stranici = ploscine.ploscina(1, "pravokotnik")
+    sez_pravokotnik = []
+    for tocke in st_tock:
+        maksimum = 0
+        for i in range(ponovitve):
+            a = generator_tock.pravokotnik(stranici[0], stranici[1], tocke)
+            b = dolzina.dolzina_med_tockami(a)
+            c = minimalno_vpeto_drevo.prim(a, b)[1]
+            if maksimum > c:
+                pass
+            else:
+                maksimum = c
+        sez_pravokotnik.append(maksimum)
+    return
 
 
 # ELIPSA
 
-stranice_ax = [ploscine.ploscina(k, "elipsa")[0] for k in polmeri]
-stranice_by = [ploscine.ploscina(k, "elipsa")[1] for k in polmeri]
-sez_elipsa  =[]
+ime_datoteke_elipsa = "rezultati_elipsa.txt"
 
-for i in range(len(stranice_ax)):
-    podseznam = []
-    for tocke in st_tock:
-        maksimum = 0
-        for k in range(ponovitve):
-            a = generator_tock.elipsa(stranice_ax[i], stranice_by[i], tocke)
-            b = dolzina.dolzina_med_tockami(a)
-            c = minimalno_vpeto_drevo.prim(a, b)[1]
-            if maksimum > c:
-                pass
-            else:
-                maksimum = c
-        podseznam.append(maksimum)
-    sez_elipsa.append(podseznam)
-print(sez_elipsa)
+def shrani_elipsa(mapa, ime_datoteke, polmeri, st_tock, ponovitve):
+    '''Funkcija zgenerira tocke v elipsi, izracuna dolzine, najde minimalno drevo in vsoto. Poskus ponovi, kolikor
+        dano, rezultate pa spravi v datoteko.'''
+    stranice_ax = [ploscine.ploscina(k, "elipsa")[0] for k in polmeri]
+    stranice_by = [ploscine.ploscina(k, "elipsa")[1] for k in polmeri]
+    sez_elipsa  =[]
+    for i in range(len(stranice_ax)):
+        podseznam = []
+        for tocke in st_tock:
+            maksimum = 0
+            for k in range(ponovitve):
+                a = generator_tock.elipsa(stranice_ax[i], stranice_by[i], tocke)
+                b = dolzina.dolzina_med_tockami(a)
+                c = minimalno_vpeto_drevo.prim(a, b)[1]
+                if maksimum > c:
+                    pass
+                else:
+                    maksimum = c
+            podseznam.append(maksimum)
+        sez_elipsa.append(podseznam)
+    return
 
 
 # ENAKOSTRANICNI TRIKOTNIK
 
-stranica_a = [ploscine.ploscina(k, "trikotnik") for k in polmeri]
-sez_trikotnik  =[]
+ime_datoteke_trikotnik = "rezultati_trikotnik.txt"
 
-for stranica in stranica_a:
-    podseznam = []
-    for tocke in st_tock:
-        maksimum = 0
-        for i in range(ponovitve):
-            a = generator_tock.trikotnik(stranica, tocke)
-            b = dolzina.dolzina_med_tockami(a)
-            c = minimalno_vpeto_drevo.prim(a, b)[1]
-            if maksimum > c:
-                pass
-            else:
-                maksimum = c
-        podseznam.append(maksimum)
-    sez_trikotnik.append(podseznam)
-print(sez_trikotnik)
+def shrani_trikotnik(mapa, ime_datoteke, polmeri, st_tock, ponovitve):
+    '''Funkcija zgenerira tocke v enakostraničnem trikotniku, izracuna dolzine, najde minimalno drevo in vsoto. Poskus ponovi, kolikor
+        dano, rezultate pa spravi v datoteko.'''
+    stranica_a = [ploscine.ploscina(k, "trikotnik") for k in polmeri]
+    sez_trikotnik  =[]
+    for stranica in stranica_a:
+        podseznam = []
+        for tocke in st_tock:
+            maksimum = 0
+            for i in range(ponovitve):
+                a = generator_tock.trikotnik(stranica, tocke)
+                b = dolzina.dolzina_med_tockami(a)
+                c = minimalno_vpeto_drevo.prim(a, b)[1]
+                if maksimum > c:
+                    pass
+                else:
+                    maksimum = c
+            podseznam.append(maksimum)
+        sez_trikotnik.append(podseznam)
+    return
+
+
+# Klicanje funkcij
+shrani_krog(mapa, ime_datoteke_krog, polmeri, st_tock, ponovitve)
+shrani_kvadrat(mapa, ime_datoteke_kvadrat, polmeri, st_tock, ponovitve)
+shrani_pravokotnik(mapa, ime_datoteke_pravokotnik, st_tock, ponovitve)
+shrani_elipsa(mapa, ime_datoteke_elipsa, polmeri, st_tock, ponovitve)
+shrani_trikotnik(mapa, ime_datoteke_trikotnik, polmeri, st_tock, ponovitve)
