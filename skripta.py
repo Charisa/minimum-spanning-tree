@@ -3,7 +3,8 @@ import dolzina
 import minimalno_vpeto_drevo
 import ploscine
 import shrani
-
+import math
+import narisi
 
 mapa = "rezultati"
 polmeri = [1, 1.5, 2, 5, 10]
@@ -109,7 +110,7 @@ def shrani_elipsa(mapa, ime_datoteke, polmeri, st_tock, ponovitve):
                     maksimum = c
             podseznam.append(maksimum)
         sez_elipsa.append(podseznam)
-    return
+    return sez_elipsa
 
 
 # ENAKOSTRANICNI TRIKOTNIK
@@ -139,8 +140,23 @@ def shrani_trikotnik(mapa, ime_datoteke, polmeri, st_tock, ponovitve):
 
 
 # Klicanje funkcij
-shrani_krog(mapa, ime_datoteke_krog, polmeri, st_tock, ponovitve)
-shrani_kvadrat(mapa, ime_datoteke_kvadrat, polmeri, st_tock, ponovitve)
-shrani_pravokotnik(mapa, ime_datoteke_pravokotnik, st_tock, ponovitve)
-shrani_elipsa(mapa, ime_datoteke_elipsa, polmeri, st_tock, ponovitve)
-shrani_trikotnik(mapa, ime_datoteke_trikotnik, polmeri, st_tock, ponovitve)
+#shrani_krog(mapa, ime_datoteke_krog, polmeri, st_tock, ponovitve)
+#shrani_kvadrat(mapa, ime_datoteke_kvadrat, polmeri, st_tock, ponovitve)
+#shrani_pravokotnik(mapa, ime_datoteke_pravokotnik, st_tock, ponovitve)
+#shrani_elipsa(mapa, ime_datoteke_elipsa, polmeri, st_tock, ponovitve)
+#shrani_trikotnik(mapa, ime_datoteke_trikotnik, polmeri, st_tock, ponovitve)
+
+
+# Izracun maksimalne vsote 6 za KROG
+
+# seznam tock, pri katerih je vsota kvadratov razdalj enaka 6
+seznam = [{'x':0, 'y':0}, {'x':1, 'y':0}, {'x':-1, 'y':0}, {'x':0.5, 'y':math.sqrt(3)/2}, {'x':-0.5, 'y':math.sqrt(3)/2}, {'x':0.5, 'y':-math.sqrt(3)/2}, {'x':-0.5, 'y':-math.sqrt(3)/2}]
+
+def vsota_6(seznam):
+    '''Funkcija sprejme seznam tock in izracuna razdalje med njimi in najde minimalno vpeto drevo.'''
+    dolzine = dolzina.dolzina_med_tockami(seznam)
+    drevo = minimalno_vpeto_drevo.prim(seznam, dolzine)
+    vsota = drevo[1]
+    return vsota
+vsota = vsota_6(seznam)
+
