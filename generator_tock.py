@@ -53,9 +53,9 @@ def elipsa(dolzina_ax, dolzina_by, st_tock):
     Funkcija vrne nakljucno zgenerirane tocke v seznamu slovarjev.'''
     seznam_tock = [{'x' : 0, 'y' : 0}]
     while len(seznam_tock) < st_tock:                               # Tocke iscemo najprej znotraj pravokotnika s stranicama dolzina_ax in dolzina_by
-        x = numpy.random.uniform(-dolzina_ax/2, dolzina_ax/2)
-        y = numpy.random.uniform(-dolzina_by/2, dolzina_by/2)
-        if x ** 2 / dolzina_ax ** 2 + y ** 2 / dolzina_by ** 2 <= 1:  # Ko dobimo nakljucno izbiro tock znotraj pravokotnika, preverimo, ce
+        x = numpy.random.uniform(-dolzina_ax, dolzina_ax)
+        y = numpy.random.uniform(-dolzina_by, dolzina_by)
+        if (x ** 2) / (dolzina_ax ** 2) + (y ** 2) / (dolzina_by ** 2) <= 1:  # Ko dobimo nakljucno izbiro tock znotraj pravokotnika, preverimo, ce
             seznam_tock.append({'x': x, 'y': y})                    # je tocka znotraj elipse, tako da tocki vstavimo v neenabo za obmocje elipse.
     return seznam_tock
 
