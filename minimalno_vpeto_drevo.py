@@ -28,34 +28,36 @@ def prim(seznam_tock, matrika_dolzin):
     E = [-1 for i in range(st_vozlisc)]
     # Pripravimo prazen seznam F
     F = []
+    korak = 0
     # Ponavljamo, dokler ne uporabimo vseh vozlisc (torej je mnozica Q prazna)
     while len(Q):
-        # Najdemo "vozlisce", ki je v Q in ima najcenejso povezavo do "vozlisce"
-        vozlisce = C.index(min([C[i] for i in Q]))
+        # Najdemo najmanjso vrednost v C (iscemo po cenah vozlisc, ki so se v Q)
+        minimum = min([C[i] for i in Q])
+        # naredimo seznam vseh indeksov z minimumom (=minimum)
+        vsi_indeksi = [i for i, x in enumerate(C) if x == minimum]
         # Odstranimo vozlisce iz mnozice neuporabljenih vozlisc (pazimo na morebitne ponovitve razdalj
         # ki so sicer pri nakljucni izbiri zelo malo verjetne)
-        if vozlisce in Q:
-            Q.remove(vozlisce)
-        else:
-            vsi_indeksi = [i for i, x in enumerate(C) if x == vozlisce]
-            for indeks in vsi_indeksi:
-                if indeks in Q:
-                    Q.remove(indeks)
-                    break
+        vozlisce = 0
+        for i in vsi_indeksi:
+            if i in Q:
+                vozlisce = i
+                Q.remove(i)
+                break
         # Dodamo vozlisce v F
         F.append(vozlisce)
         # Ce E[vozlisce] nima vrednosti -1 ("flag value), dodamo E[vozlisce] v F
         if E[vozlisce] != -1:
             F.append(E[vozlisce])
         # Zanka gre cez vsako vozlisce i, za katero velja, da med i in vozlisce obstaja povezava
-        for cena_povezave in matrika_dolzin[vozlisce]:
-            i = numpy.where(matrika_dolzin[vozlisce] == cena_povezave)[0][0]
+        for sosed in range(st_vozlisc):
+            cena = float(matrika_dolzin[vozlisce][sosed])
             # Ce je vozlisce i v Q in je cena povezave med i in vozlisce manjsa od C[i],
             # potem C[i] nastavimo na zdajsnjo ceno povezave in v E[i] shranimo vozlisce, tako da kaze na
             # povezavo med i in vozlisce
-            if (i in Q) and (cena_povezave != 0) and (cena_povezave < C[i]):
-                C[i] = cena_povezave
-                E[i] = vozlisce
+            if (sosed in Q) and (cena != 0) and (cena < C[sosed]):
+                print("sosed v Q: ")
+                C[sosed] = cena
+                E[sosed] = vozlisce
     # Funkcija vrne povezave drevesa in vsoto cen med povezavemi v minimalnem vpetem drevesu
     # Vzamemo povezave od vkljucno drugega vozlisca
     F = F[1:]
