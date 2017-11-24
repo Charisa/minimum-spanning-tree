@@ -1,4 +1,4 @@
-\documentclass[a4paper]{report}
+\documentclass[a4paper]{article}
 \usepackage[slovene]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -83,7 +83,7 @@ Sledi kratek opis uporabljenih funkcij (podrobnejši opisi funkcij so v kodi sam
 \textbf{GENERIRANJE TOČK: } V datoteki \colorbox{gray!10}{$generator\_tock.py$} so definirane funkcije za naključno generiranje točk znotraj različnih likov (krog, kvadrat, pravokotnik, elipsa in trikotnik). Za izbiro točk sva uporabljali enakomerno porazdelitev in pri krogu, elipsi in trikotniku uporabili porazdelitev znotraj mej drugih likov (da je porazdelitev še vedno bila enakomerna). Pri krogu sva uporabili meje za naključno izbrane točke znotraj kvadrata s stranico, enako premeru kroga. Preden sva zgenerirano točko dali v seznam, sva preverili, če se nahaja znotraj kroga. Za trikotnik sva prav tako uporabili kvadrat, pri elipsi pa pravokotnik.\\ \\
 \textbf{Vhodni podatki:} Vsaka funkcija sprejme omejitve lika (polmer, dolžina stranice itd) in št. točk za generiranje. \\ 
 \textbf{Izhod:} Seznam točk, podane v slovarju ($\{'x' : x, \ 'y' :  y\}$).  \\ 
-\textbf{Časovna zahtevnost:} \\ \\
+\textbf{Časovna zahtevnost:} $O(n).$\\ \\
 %Generiranje naključnih točk znotraj kvadrata in pravokotnika sta očitna - lik centriramo v koordinatni sistem in naključno izberemo število znotraj lika za vsako koordinato posebej, tako da števila omejimo na zaprt interval $[-\frac{\text{dolžina stranice}}{2}, \frac{\text{dolžina stranice}}{2}]$. Izbira števil je porazdeljena enakomerno na intervalu. \\
 %Pri krogu in elipsi je generiranje izvedeno na podoben princip. S pretvorbo točk v polarne koordinate pri krogu (kjer $x = r  \cos \phi$ in  $y = r \sin \phi$) in nato generiranjem kota $\phi$ ne dobimo enakomerno porazdeljenih točk znotraj lika, zato generiranje izvedemo na drugačen način. Za krog uporabimo isti način generiranja kot pri kvadratu (premer kroga je enak dolžini stranice kvadrata), le da potem za vsako zgenerirano točko preverimo, če je znotraj kroga. Če je, jo shranimo, drugače zgeneriramo drugo. \\
 %Na podoben način zgeneriramo točke znotraj elipse, le da tokrat namesto kvadrata uporabimo pravokotnik (kjer sta stranici pravokotnika enaki dvakratniku polosi elipse).\\
@@ -144,7 +144,7 @@ Spodnji graf (narisan v programu $R$) prikazuje odvisnost vsote kvadratov razdal
 Iz grafa lahko vidimo, da so vsote kvadratov razdalj z manjšim številom točk v krogu večje kot pri večjem številu točk. Ugotovili sva tudi, da bolj kot večava število točk, manjša je verjetnost za veliko vsoto. \\ 
 \subsubsection{Večanje polmerov}
 
-Zanimalo naju je, kako se veča vsota kvadratov razdalj, če večeva polmer. Dokaj očitno je, da se bo vsota zelo hitro povečevala, kar je lepo razvidno tudi iz naslednjega grafa:
+Zanimalo naju je, kako se veča vsota kvadratov razdalj, če večeva polmer. Izračunali sva vsote za polmere $1, 1.5, 2, 5$ in $10$. Dokaj očitno je, da se bo vsota zelo hitro povečevala (saj se ploščina ), kar je lepo razvidno tudi iz naslednjega grafa:
 \begin{center}
 \includegraphics[scale = 0.3]{krog_polmer}\\ 
 \scriptsize{\textit{Graf 2: } Odvisnost vsote kvadratov razdalj od polmera kroga.}
@@ -166,12 +166,13 @@ Najin algoritem za izračun vsote na minimalnem vpetem drevesu sva preizkusili n
 Zanimali so naju tudi rezultati ostalih likov, predvsem primerjava različnih likov z enakimi ploščinami. Zato sva uporabili funkcijo $ploscina$ v datoteki \colorbox{gray!10}{$ploscine.py$}, ki nama je za dan polmer kroga izracunala podatke za ostale like.
 Za kvadrat je s ploščino bila enolično določena stranica, prav tako za enakostranični trikotnik. Pri pravokotniku in elipsi pa sva morali določiti, kakšno bo razmerje med vodoravno in navpično dimenzijo. Za pravokotnik sva izbrali eno stranico, ki je bila enaka polmeru kroga, drugo stranico pa kot produkt polmera in $\pi$. Tako sta se in ena in druga stranica spreminjali glede na polmer.
 Za elipso sva vzeli $a$ polos enako dvakratniku polmera, $b$ polos pa polovici polmera. 
-Vsak lik je vseboval koordinatno izhodišče $(0,0)$ ter vsi, razen trikotnika, so bili na središče centrirani. Trikotnik pa je točko $(0,0)$ imel na osnovnici, osnovnica pa je ležala na abscisni osi. \\ \\
+Vsak lik je vseboval koordinatno izhodišče $(0,0)$ ter vsi, razen trikotnika, so bili na središče centrirani. Trikotnik pa je točko $(0,0)$ imel na osnovnici, osnovnica pa je ležala na abscisni osi. 
+\pagebreak
 S $1000$ ponovitvami za različno število točk in za večanje polmera sva ugotovili več stvari:
 \begin{enumerate} 
 \item Pomembno je, kakšna je maksimalna dolžina med točko $(0,0)$ (ki smo jo imeli v vsakem liku je bila v večini primerov centrirana) in najbolj oddaljeno točko v liku. To je opazno pri elipsi, saj je njena razdalja od središča do skrajnega roba lika vedno bila največja in pokazalo se je, da je največja tudi njena vsota. (\small{Glej $Graf 3$})
 \item Zgornje meje vsot podobnih likov so zelo podobne. Na primer krog in kvadrat - na \small{$Graf 3$} se razlika skoraj ne opazi. 
-\item Z večanjem točk, ki jih zgeneriramo znotraj lika, se vsota kvadratov razdalj minimalnega vpetega drevesa med temi točkami manjša. (\small{Glej $Graf 4$}) Če so razdalje manj kot $1$, so kvadrirane razdalje manjše od razdalj več kot $1$. Lahko bi vzeli zgornje meje vsot, ki smo jih dobili z generiranjem in tako dobili približne ocene za zgornje meje. Zgornje meje za elipso in kvadrat, ki nimata enolično določenih stranic oz. osi, pa je meje težje določiti, saj je le ta odvisna od tega, kako izberemo razmerje med stranicami.
+\item Z večanjem točk, ki jih zgeneriramo znotraj lika, se vsota kvadratov razdalj minimalnega vpetega drevesa med temi točkami manjša. (\small{Glej $Graf 4$}) Če so razdalje manj kot $1$, so kvadrirane razdalje manjše od razdalj več kot $1$. Lahko bi vzeli zgornje meje vsot, ki smo jih dobili z generiranjem in tako dobili približne ocene za zgornje meje. Zgornje meje za elipso in kvadrat, ki nimata enolično določenih stranic oz. osi, pa je meje težje določiti, saj je le ta odvisna od tega, kako izberemo razmerje med stranicami. 
 \item Z večanjem števila točk se vsote različnih likov vse manj razlikujejo in so pri $50$-ih točkah že zelo blizu. 
 \end{enumerate}
 
