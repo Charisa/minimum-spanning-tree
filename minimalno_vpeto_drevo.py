@@ -55,7 +55,6 @@ def prim(seznam_tock, matrika_dolzin):
             # potem C[i] nastavimo na zdajsnjo ceno povezave in v E[i] shranimo vozlisce, tako da kaze na
             # povezavo med i in vozlisce
             if (sosed in Q) and (cena != 0) and (cena < C[sosed]):
-                print("sosed v Q: ")
                 C[sosed] = cena
                 E[sosed] = vozlisce
     # Funkcija vrne povezave drevesa in vsoto cen med povezavemi v minimalnem vpetem drevesu
