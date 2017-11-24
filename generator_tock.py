@@ -15,9 +15,10 @@ import math
 
 def krog(polmer, st_tock):
     '''Funkcija sprejme polmer in stevilo tock, ki jih nakljucno izbere znotraj kroga s srediscem v (0,0).
-    Fukcija vrne tocke v seznamu slovarjev oblike {'x' : x, 'y' : y}.'''
+    Fukcija vrne tocke v seznamu slovarjev oblike {'x' : x, 'y' : y}.
+    Casovna zahtevnost algoritma: O(n).'''
     seznam_tock = [{'x' : 0, 'y' : 0}]                        # seznam, v katerega shranjujemo slovarje nakljucnih tock
-    while len(seznam_tock) < st_tock:                         # iscemo nakljucne tocke, dokler v seznamu ni dovolj tock
+    while len(seznam_tock) < st_tock:                   #O(n) - pricakovano stevilo obhodov je 4n/pi => O(n)   # iscemo nakljucne tocke, dokler v seznamu ni dovolj tock
         x = numpy.random.uniform(-polmer, polmer)       #O(1) # x in y koordinato izberemo nakljucno, enakomerno porazdeljeno na intervalu polmera
         y = numpy.random.uniform(-polmer, polmer)       #O(1) # s tem dobimo tocke znotraj kvadrata s stranico iste dolzine kot premer kroga
         if math.sqrt(x ** 2 + y ** 2)  <= polmer:       #O(1) # pogledamo, ce je tocka znotraj kroga
@@ -27,7 +28,8 @@ def krog(polmer, st_tock):
 
 def kvadrat(dolzina_stranice, st_tock):
     '''Funkcija sprejme dolzino stranice kvadrata in st. tock, ki jih nakljucno izbere znotraj kvadrata s srediscem v (0,0).
-    Funkcija vrne tocke v seznamu slovarjev.'''
+    Funkcija vrne tocke v seznamu slovarjev.
+    Casovna zahtevnost: O(n).'''
     seznam_tock = [{'x' : 0, 'y' : 0}]
     for tocka in range(st_tock):                                           #O(n) # iscemo nakljucne tocke v kvadratu, centriranega v koordinatnem izhodiscu,
         x = numpy.random.uniform(-dolzina_stranice/2, dolzina_stranice/2)  #O(1) # zato gledamo interval od polovice dolzine stranic v negatino in pozitivno
@@ -38,8 +40,8 @@ def kvadrat(dolzina_stranice, st_tock):
 
 def pravokotnik(dolzina_stranice_a, dolzina_stranice_b, st_tock):
     '''Funkcija sprejme dolzini stranic in st. tock, ki jih nakljucno izbere znotraj pravokotnika, ki ga centriramo v
-    koordinatni sistem.
-    Funkcija vrne tocke v seznamu slovarjev.'''
+    koordinatni sistem. Funkcija vrne tocke v seznamu slovarjev.
+    Casovna zahtevnost: O(n)'''
     seznam_tock = [{'x' : 0, 'y' : 0}]
     for tocka in range(st_tock):                                               #O(n)      # iskanje tock v pravokotniku je zelo slicno iskanju znotraj kvadrata
         x = numpy.random.uniform(-dolzina_stranice_a/2, dolzina_stranice_a/2)  #O(1)
@@ -51,9 +53,10 @@ def pravokotnik(dolzina_stranice_a, dolzina_stranice_b, st_tock):
 def elipsa(dolzina_ax, dolzina_by, st_tock):
     '''Funkcija sprejme dolzini velike in male polosi elipse, ki predstavljata standardni "a" in "b" vrednosti.
     Elipsa je postavljena v srediscno lego.
-    Funkcija vrne nakljucno zgenerirane tocke v seznamu slovarjev.'''
+    Funkcija vrne nakljucno zgenerirane tocke v seznamu slovarjev.
+    Casovna zahtevnost: O(n).'''
     seznam_tock = [{'x' : 0, 'y' : 0}]
-    while len(seznam_tock) < st_tock:                               # Tocke iscemo najprej znotraj pravokotnika s stranicama dolzina_ax in dolzina_by
+    while len(seznam_tock) < st_tock:                               #O(n) (podobno kot pri krogu) # Tocke iscemo najprej znotraj pravokotnika s stranicama dolzina_ax in dolzina_by
         x = numpy.random.uniform(-dolzina_ax, dolzina_ax)           #O(1)
         y = numpy.random.uniform(-dolzina_by, dolzina_by)           #O(1)
         if (x ** 2) / (dolzina_ax ** 2) + (y ** 2) / (dolzina_by ** 2) <= 1:  #O(1)   # Ko dobimo nakljucno izbiro tock znotraj pravokotnika, preverimo, ce
@@ -63,14 +66,15 @@ def elipsa(dolzina_ax, dolzina_by, st_tock):
 
 def trikotnik(dolzina_stranice, st_tock):
     '''Funkcija sprejme dolzino stranice enakostranicnega trikotnika in st. tock. Osnovna stranica lezi na y = 0
-    in je simetricna glede na y. Funkcija vrne tocke v seznamu slovarjev.'''
+    in je simetricna glede na y. Funkcija vrne tocke v seznamu slovarjev.
+    Casovna zahtevnost: O(n).'''
     a1 = [-dolzina_stranice/2, 0]
     a2 = [dolzina_stranice/2, 0]
     a3 = [0, dolzina_stranice]
     # Izracunamo ploscino danega trikotnika
     A = 1 / 2 * (abs(a1[0] * a2[1] + a2[0] * a3[1] + a3[0] * a1[1] - a2[0] * a1[1] + a3[0] * a2[1] - a1[0] * a3[1])) #O(1)
     seznam_tock = []
-    while len(seznam_tock) < st_tock:
+    while len(seznam_tock) < st_tock:                                               #O(n) - podobno kot pri krogu.
         x = numpy.random.uniform(-dolzina_stranice/2, dolzina_stranice/2)                                   #O(1)
         y = numpy.random.uniform(-dolzina_stranice/2, dolzina_stranice/2)                                   #O(1)
         # Izracunamo 3 ploscine, ki povezujejo novo nakljucno tocko z vsakim parom danih tock
