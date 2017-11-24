@@ -6,6 +6,7 @@ import math
 #Komentar: Pri dolocanju O-notacije je n = dolzini seznama slovarjev
 
 def dolzina_med_tockami(seznam_slovarjev):
+    # Casovna zahtevnost algoritma: O(n^3)
 #Funkcija sprejme seznam slovarjev iz katerega generira seznam seznamov. Vsak podseznam predstavlja razdalje od določene točke do vseh ostalih točk.
 #Da nebi razdalje dvojno računali, bomo izračunali razdaljo med točkama le enkrat tako, da dobimo zgornje trikotno matriko, ki ji bomo na koncu prišteli vrednost iste transponirane matrike
     seznam = []                                                                     #seznam, kamor bomo shranili podsezname
