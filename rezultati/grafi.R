@@ -31,14 +31,14 @@ polmeri["polmer"] <- c(1, 1.5, 2, 5, 10)
 #graf
 plot.new()
 ggplot(data=polmeri) + geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$krog), colour="darkorchid")+
-  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$krog), colour="darkorchid", size=0.5) + 
+  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$krog), colour="darkorchid", size=1) + 
   geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$kvadrat), colour="deeppink")+
-  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$kvadrat), colour="deeppink", size=0.5) +
+  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$kvadrat), colour="deeppink", size=1) +
   geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$pravokotnik), colour="goldenrod1")+
-  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$pravokotnik), colour="goldenrod1", size=0.5) + 
+  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$pravokotnik), colour="goldenrod1", size=1) + 
   geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$elipsa), colour="darkcyan")+
-  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$elipsa), colour="darkcyan", size=0.5) +
+  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$elipsa), colour="darkcyan", size=1) +
   geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$trikotnik), colour="darkolivegreen3")+
-  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$trikotnik), colour="darkolivegreen3", size=0.5)+ 
+  geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$trikotnik), colour="darkolivegreen3", size=1)+ 
   labs(x="Polmer", y="Vsota")
 legend("topleft", legend = c("krog", "kvadrat", "pravokotnik", "elipsa", "trikotnik"), col = c("darkorchid", "deeppink", "darkcyan", "darkolivegreen3"), lty=c(1, 1, 1, 1))
