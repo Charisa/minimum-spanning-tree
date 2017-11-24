@@ -70,7 +70,7 @@ Izrek vzbudi veliko vprašanj. Osredotočili sva se na sledeče:
 Pred začetkom pisanja algoritmov sva postavili določene hipoteze oz. predikcije:
 
 \begin{itemize}
-\item Pri večanju pločine kroga, se bo meja, ki je v izreku za enotski krog postavljena na $6$, večala skupaj s ploščino. Prav tako se bo večala meja tudi pri ostalih likih (kvadratih, pravokotnikih, elipsah, trikotnikih), pričakujeva pa, da bodo vsaj pri ploščini $\pi$ meje podobne. \item Predvidevava, da bodo zgornje meje vsot kvadratov dolžin varirale med liki z istimi ploščinami - verjetno bodo pomembne tudi maksimalne razdalje, ki jih lahko dosežemo znotraj lika (torej tudi način, kako bomo izbrali dolžine stranic npr. pravokotnikov). Večje kot bodo ploščine, večja bo razlika maksimalnih razdalj med liki (npr. med krogom in kvadratom. Pri ploščini $\pi$ je maksimalna dolžina znotraj kroga $2$, diagonala kvadrata pa približno $2,507$. Pri ploščini $4\pi$ je maksimalna dolžina znotraj kroga $4$, diagonala kvadrata pa je dolga približno $5,0133$). 
+\item Pri večanju ploščine kroga, se bo meja, ki je v izreku za enotski krog postavljena na $6$, večala skupaj s ploščino. Prav tako se bo večala meja tudi pri ostalih likih (kvadratih, pravokotnikih, elipsah, trikotnikih), pričakujeva pa, da bodo vsaj pri ploščini $\pi$ meje podobne. \item Predvidevava, da bodo zgornje meje vsot kvadratov dolžin varirale med liki z istimi ploščinami - verjetno bodo pomembne tudi maksimalne razdalje, ki jih lahko dosežemo znotraj lika (torej tudi način, kako bomo izbrali dolžine stranic npr. pravokotnikov). Večje kot bodo ploščine, večja bo razlika maksimalnih razdalj med liki (npr. med krogom in kvadratom. Pri ploščini $\pi$ je maksimalna dolžina znotraj kroga $2$, diagonala kvadrata pa približno $2,507$. Pri ploščini $4\pi$ je maksimalna dolžina znotraj kroga $4$, diagonala kvadrata pa je dolga približno $5,0133$). 
 \item Z dovoljšnim številom poskusov s čim več točkami želiva ugotoviti, kako maksimalne razdalje znotraj likov vplivajo na zgornje meje vsot. 
 \end{itemize}
 
@@ -186,7 +186,9 @@ V \colorbox{gray!10}{$skripta.py$} se nahaja funkcija $cas_glede_st_tock$, ki iz
 \end{center}
 \section{Ugotovitve in zaključek}
 
-Zanimivo bi bilo tudi spreminjati fiksirano točko (ki je v našem primeru bila na sredini lika (razen v trikotniku)) in ugotavljati, kako se razlikujejo vsote kvadratov razdalj povezav minimalnega vpetega drevesa. \\
+Zanimivo bi bilo tudi spreminjati fiksirano točko (ki je v našem primeru bila na sredini lika (razen v trikotniku)) in ugotavljati, kako se razlikujejo vsote kvadratov razdalj povezav minimalnega vpetega drevesa. 
+Najine hipoteze so se izkazale v grobem za pravilne, čeprav je težje pokazati neko zgornjo mejo za elipso in pravokotnik, saj je vsota dolžin daljic odvisna od izbire stranic. V poročilu sva pokazali le eno izmed možnosti, lahko pa bi bila vsota še večja, če bi fiksirali stranico višine in povečevali le dolžino. Če bi želeli bolj natančno mejo tudi za ostale like, bi bilo potrebno najti posebne primere, kot je pri krogu, za vsoto 6. Tukaj bi prišli do problema pri številu točk, da pridemo do maksimalne zgornje meje, in potreben bi bil tudi dokaz, da je to res najvišja meja. 
+\\
 
 
 
