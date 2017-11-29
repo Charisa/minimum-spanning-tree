@@ -41,4 +41,4 @@ ggplot(data=polmeri) + geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$
   geom_point(data=polmeri, aes(x=polmeri$polmer, y=polmeri$trikotnik), colour="darkolivegreen3")+
   geom_line(data=polmeri, aes(x=polmeri$polmer, y=polmeri$trikotnik), colour="darkolivegreen3", size=1)+ 
   labs(x="Polmer", y="Vsota")
-legend("topleft", legend = c("krog", "kvadrat","pravokotnik", "elipsa", "trikotnik"), col = c("darkorchid", "deeppink", "goldenrod1", "darkcyan", "darkolivegreen3"), lty=c(1, 1, 1, 1, 1))
+legend("topleft", legend = c("krog", "kvadrat", "pravokotnik", "elipsa", "trikotnik"), col = c("darkorchid", "deeppink", "darkcyan", "darkolivegreen3"), lty=c(1, 1, 1, 1))
