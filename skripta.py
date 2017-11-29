@@ -256,8 +256,7 @@ def vsota_glede_st_tock(mapa_rezultatov, ime_datoteke1, polmer1, st_tock, ponovi
 ime_datoteke2 = "vsota_glede_polmer.txt"
 def vsote_glede_polmer(mapa_rezultatov, ime_datoteke2, polmeri, st_tock, ponovitve):
     '''Funkcija za klicanje vseh ostalih funkcij za vse like, ki vrne seznam maksimalne vsote, ter rezultat spravi v
-    tekstovno datoteko. Za vsak polmer in lik najdemo maksimalno vsoto, ki jo lahko zgeneriramo ob 1000 ponovitvah pri
-    razlicnem stevilu zgeneriranih tock.'''
+    tekstovno datoteko.'''
     # maksimalne vrednosti po točkah za polmere
     # krog
     seznam_krog = []
